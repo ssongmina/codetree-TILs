@@ -53,8 +53,6 @@ public class Main {
 	            }
 	           }
 	          
-	        
-	        
 	        it = I.listIterator();
 	        while(it.hasNext()){
 	            System.out.print(it.next());
