@@ -24,7 +24,7 @@ public class Main {
                         it.previous();
                     break;
                 case "R":
-                    if(it.hasNext());
+                    if(it.hasNext())
                         it.next();
                     break;
                 case "D":
