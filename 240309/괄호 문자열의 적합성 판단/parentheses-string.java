@@ -9,13 +9,18 @@ public class Main {
         int n = str.length();
         Stack<Character> stack = new Stack<>();
         char[] c = str.toCharArray();
+        boolean empty = false;
         for(int i=0; i<n; i++){
             if(c[i] == '(')
                 stack.push('(');
+            else if(stack.size() == 0){
+                empty = true;
+                break;
+            }
             else
                 stack.pop();
         }
-        if(stack.isEmpty())
+        if(stack.isEmpty() && empty == false)
             System.out.println("Yes");
         else
             System.out.println("No");
