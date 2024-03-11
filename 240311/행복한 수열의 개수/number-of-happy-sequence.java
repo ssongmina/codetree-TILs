@@ -14,38 +14,42 @@ public class Main {
             for(int j=0; j<n; j++)
                 arr[i][j] = Integer.parseInt(st.nextToken());
         }
-        if(n==1 && m==1)
-            System.out.println("2");
-        else{
-            int cnt = 0;
-            for(int i=0; i<n; i++){
-                int sum = 1;
-                for(int j=0; j<n-1; j++){
-                    if(arr[i][j] == arr[i][j+1])
-                        sum++;
-                    else
-                        sum = 1;
-                }
-                if(arr[i][n-2] == arr[i][n-1])
-                    sum++;
-                if(sum >= m)
-                    cnt++;
-            }
-            for(int i=0; i<n; i++){
-                int sum = 1;
-                for(int j=0; j<n-1; j++){
-                    if(arr[j][i] == arr[j+1][i])
-                        sum++;
-                    else
-                        sum = 1;
-                }
-                if(arr[n-1][i] == arr[n-2][i])
-                    sum++;
-                if(sum >= m)
-                    cnt++;
-            }
-           
-            System.out.println(cnt);
+        
+        if(m == 1){
+            System.out.println(2*n);
         }
+        else{
+            int sum = 0; // 연속하는 m이 있는 갯수
+            for(int i=0; i<n; i++){ // 모든 행에 대해서
+                int num = arr[i][0];
+                int cnt = 1; // 연속하는 수의 갯수
+                for(int j=1; j<n; j++){
+                    if(num == arr[i][j])
+                        cnt++;
+                    else {
+                        cnt = 1;
+                        num = arr[i][j];
+                    }
+                }
+                if(cnt >= m)
+                    sum++;
+            }
+            for(int i=0; i<n; i++){ // 모든 열에 대해서
+                int num = arr[0][i];
+                int cnt = 1;
+                for(int j=1; j<n; j++){
+                    if(num == arr[j][i])
+                        cnt++;
+                    else{
+                        cnt = 1;
+                        num = arr[j][i];
+                    }
+                }
+                if(cnt >= m)
+                    sum++;
+            }
+            System.out.println(sum);
+        }
+
     }
 }
