@@ -21,20 +21,19 @@ public class Main {
             for(int j=0; j<n-2; j++){
                 int cnt = sum(i,j);
                 if(cnt > max)
-                    max = cnt;        
+                    max = cnt;
             }
         }
         System.out.println(max);
     }
 
     public static int sum(int i, int j){
-        int sum = 0;
-        for(int a = i; a<i+3; i++){
-            for(int b = j; b<j+3; j++){
-                if(arr[a][b] == 1)
-                    sum++;
-            }
+        int cnt = 0;
+        for(int a = i; a<i+3; a++){
+            cnt += arr[a][j];
+            cnt += arr[a][j+1];
+            cnt += arr[a][j+2];
         }
-        return sum;
+        return cnt;
     }
 }
