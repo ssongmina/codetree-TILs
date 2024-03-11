@@ -2,17 +2,16 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args){
         // 여기에 코드를 작성해주세요.
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-        int n = Integer.parseInt(st.nextToken());
-        int m = Integer.parseInt(st.nextToken());
+		Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
         int[][] arr = new int[n][n];
         for(int i=0; i<n; i++){
-            st = new StringTokenizer(br.readLine());
             for(int j=0; j<n; j++)
-                arr[i][j] = Integer.parseInt(st.nextToken());
+                arr[i][j] = sc.nextInt();
         }
         
         if(m == 1){
