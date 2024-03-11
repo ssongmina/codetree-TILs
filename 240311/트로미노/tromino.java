@@ -11,20 +11,21 @@ public class Main {
         for(int i=0; i<n; i++)
             for(int j=0; j<m; j++)
                 arr[i][j] = sc.nextInt();
+
         int max = 0;
         for(int i=0; i<n; i++){ // 1*3에 대하여(행에 대하여)
-            int cnt = 0;
-            for(int j=0; j<m; j++)
-                cnt += arr[i][j];
-            if(max < cnt)
-                max = cnt;
+            for(int j=0; j<m-2; j++){
+                int cnt = (arr[i][j]+arr[i][j+1]+arr[i][j+2]);
+                if(max < cnt)
+                    max = cnt;
+            }
         }
         for(int j=0; j<m; j++){ // 3*1에 대하여(열에 대하여)
-            int cnt = 0;
-            for(int i=0; i<n; i++)
-                cnt += arr[i][j];
-            if(max < cnt)
-                max = cnt;
+            for(int i=0; i<n-2; i++){
+                int cnt = (arr[i][j]+arr[i+1][j]+arr[i+2][j]);
+                if(max < cnt)
+                    max = cnt;
+            }
         }
         for(int i=0; i<n-1; i++){ // 10&11에 대해서
             for(int j=0; j<m-1; j++){
