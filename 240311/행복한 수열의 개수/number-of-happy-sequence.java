@@ -17,12 +17,12 @@ public class Main {
 
         int cnt = 0;
         for(int i=0; i<n; i++){
-            int sum = 0;
+            int sum = 1;
             for(int j=0; j<n-1; j++){
                 if(arr[i][j] == arr[i][j+1])
                     sum++;
                 else
-                    sum = 0;
+                    sum = 1;
             }
             if(arr[i][n-2] == arr[i][n-1])
                 sum++;
@@ -30,12 +30,12 @@ public class Main {
                 cnt++;
         }
         for(int i=0; i<n; i++){
-            int sum = 0;
+            int sum = 1;
             for(int j=0; j<n-1; j++){
                 if(arr[j][i] == arr[j+1][i])
                     sum++;
                 else
-                    sum = 0;
+                    sum = 1;
             }
             if(arr[n-1][i] == arr[n-2][i])
                 sum++;
