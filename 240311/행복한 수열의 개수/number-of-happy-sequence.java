@@ -22,30 +22,41 @@ public class Main {
             for(int i=0; i<n; i++){ // 모든 행에 대해서
                 int num = arr[i][0];
                 int cnt = 1; // 연속하는 수의 갯수
+                int max = 1;
                 for(int j=1; j<n; j++){
                     if(num == arr[i][j])
                         cnt++;
                     else {
+                        if(cnt >= m)   
+                            max = cnt; 
                         cnt = 1;
                         num = arr[i][j];
                     }
                 }
-                if(cnt >= m)
+                if(cnt >= m || max >= m){
                     sum++;
+                    //System.out.println("행이다");
+                }
             }
+
             for(int i=0; i<n; i++){ // 모든 열에 대해서
                 int num = arr[0][i];
                 int cnt = 1;
+                int max = 1;
                 for(int j=1; j<n; j++){
                     if(num == arr[j][i])
                         cnt++;
                     else{
+                        if(cnt >= m)   
+                            max = cnt; 
                         cnt = 1;
                         num = arr[j][i];
                     }
                 }
-                if(cnt >= m)
+                if(cnt >= m || max >= m){
                     sum++;
+                    //System.out.println("열이다");
+                }
             }
             System.out.println(sum);
         }
