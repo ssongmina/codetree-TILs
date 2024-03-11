@@ -42,6 +42,9 @@ public class Main {
             if(sum >= m)
                 cnt++;
         }
-        System.out.println(cnt);
+        if(n==1 && m==1)
+            System.out.println("1");
+        else
+            System.out.println(cnt);
     }
 }
