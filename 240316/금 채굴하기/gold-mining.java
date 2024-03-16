@@ -40,7 +40,7 @@ public class Main {
             for(int j=0; j<n; j++){
                 for(int k=0; k<=2*(n-1); k++){
                     int cnt = getNumOfGold(i,j,k);
-                    if(cnt * m > getCost(k))
+                    if(cnt * m >= getCost(k))
                         maxGold = Math.max(maxGold, cnt);
                 }
             }
