@@ -13,18 +13,25 @@ public class Main {
                 if(row-j<0 || col-j<0)
                     continue;
                 else{
-                    int cnt = 0;
+                    //System.out.println("getRec의 i는 "+i+" j는 "+j);
+                    int cnt = arr[row][col];
                     int for_r = row-j;
                     int for_c = col-j;
+                    //System.out.println("값은 "+cnt);
                     for(int a=1; a<=i; a++){ // 1
                         cnt += arr[row-a][col+a];
                         cnt += arr[for_r-a][for_c+a];
+                        //System.out.println("값1 = "+cnt);
                     }
+
                     int sec_r = row-i;
                     int sec_c = col+i;
                     for(int b=1; b<=j; b++){ // 4
                         cnt += arr[row-b][col-b];
                         cnt += arr[sec_r-b][sec_c-b];
+                        if( b == j)
+                            cnt -= arr[row-i-j][col+i-j];
+                        //System.out.println("값2 = "+cnt);
                     }
 
                     //int cnt = arr[row][col]+arr[row-i][col+i]+arr[row-i-j][col+i-j]+arr[row-j][col-j];
@@ -50,6 +57,7 @@ public class Main {
         for(int i=2; i<n; i++){
             for(int j=1; j<n-1; j++){
                 int cnt = getRec(i,j);
+                
                 maxNum = Math.max(cnt, maxNum);
             }
         }
