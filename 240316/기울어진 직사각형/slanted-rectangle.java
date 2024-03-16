@@ -1,66 +1,60 @@
-import java.util.*;
-import java.io.*;
+import java.util.Scanner;
 
 public class Main {
+    public static final int DIR_NUM = 4;
+    public static final int MAX_N = 20;
+    
     public static int n;
-    public static int[][] arr;
-
-    public static int getRec(int row, int col){
-        int sec=n-col-1;
-        int maxNum = 0;
-        for(int i=1; i<=sec; i++){
-            for(int j=1; j<=row-i; j++){
-                if(row-j<0 || col-j<0)
-                    continue;
-                else{
-                    //System.out.println("getRec의 i는 "+i+" j는 "+j);
-                    int cnt = arr[row][col];
-                    int for_r = row-j;
-                    int for_c = col-j;
-                    //System.out.println("값은 "+cnt);
-                    for(int a=1; a<=i; a++){ // 1
-                        cnt += arr[row-a][col+a];
-                        cnt += arr[for_r-a][for_c+a];
-                        //System.out.println("값1 = "+cnt);
-                    }
-
-                    int sec_r = row-i;
-                    int sec_c = col+i;
-                    for(int b=1; b<=j; b++){ // 4
-                        cnt += arr[row-b][col-b];
-                        cnt += arr[sec_r-b][sec_c-b];
-                        if( b == j)
-                            cnt -= arr[row-i-j][col+i-j];
-                        //System.out.println("값2 = "+cnt);
-                    }
-
-                    //int cnt = arr[row][col]+arr[row-i][col+i]+arr[row-i-j][col+i-j]+arr[row-j][col-j];
-                    maxNum = Math.max(cnt, maxNum);
-                }
-            }
-        }
-        return maxNum;
-
+    public static int[][] grid = new int[MAX_N][MAX_N];
+    
+    public static boolean inRange(int x, int y) {
+        return 0 <= x && x < n && 0 <= y && y < n;
     }
+    
+    public static int getScore(int x, int y, int k, int l) {
+        int[] dx = new int[]{-1, -1, 1, 1};
+        int[] dy = new int[]{1, -1, -1, 1};
+        int[] moveNum = new int[]{k, l, k, l};
+        
+        int sumOfNums = 0;
+    
+        // 기울어진 직사각형의 경계를 쭉 따라가봅니다.
+        for(int d = 0; d < DIR_NUM; d++)
+            for(int q = 0; q < moveNum[d]; q++) {
+                x += dx[d]; y += dy[d];
+                    
+                // 기울어진 직사각형이 경계를 벗어나는 경우라면
+                // 불가능하다는 의미로 답이 갱신되지 않도록
+                // 0을 반환합니다.
+                if(!inRange(x, y))
+                    return 0;
+                
+                sumOfNums += grid[x][y];
+            }
+        
+        return sumOfNums;
+    }
+
     public static void main(String[] args) {
-        // 여기에 코드를 작성해주세요.
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
-        arr = new int[n][n];
-        for(int i=0; i<n; i++){
-            for(int j=0; j<n; j++){
-                arr[i][j] = sc.nextInt();
-            }
-        }
-        int maxNum = 0;
+        
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++)
+                grid[i][j] = sc.nextInt();
+        
+        int ans = 0;
+        
+        // (i, j)를 시작으로 1, 2, 3, 4 방향
+        // 순서대로 길이 [k, l, k, l] 만큼 이동하면 그려지는
+        // 기울어진 직사각형을 잡아보는
+        // 완전탐색을 진행해봅니다.
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++)
+                for(int k = 1; k < n; k++)
+                    for(int l = 1; l < n; l++)
+                        ans = Math.max(ans, getScore(i, j, k, l));
 
-        for(int i=2; i<n; i++){
-            for(int j=1; j<n-1; j++){
-                int cnt = getRec(i,j);
-                
-                maxNum = Math.max(cnt, maxNum);
-            }
-        }
-        System.out.println(maxNum);
+        System.out.print(ans);
     }
 }
