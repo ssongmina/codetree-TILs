@@ -24,11 +24,13 @@ public class Main {
         
         for(int i=0; i<t; i++)
             make();
-
-        for(int i=0; i<3*n; i++){
-                System.out.print(arr[i]+" ");
-                if(i%3 == 2)
-                System.out.println();
+        int cnt = 0;
+        for(int i=0; i<3; i++){
+            for(int j=0; j<n; j++){
+                System.out.print(arr[cnt]+" ");
+                cnt++;
+            }
+            System.out.println();
         }
     }
 }
