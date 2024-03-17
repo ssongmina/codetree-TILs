@@ -7,7 +7,7 @@ public class Main {
     public static int m;
 
     public static int findMax(){
-        int max = 0;
+        int max = -1;
         for(int a=0; a<n; a++)
             for(int b=0; b<m; b++)
                 for(int c=0; c<n; c++)
@@ -41,6 +41,7 @@ public class Main {
                 arr[i][j] = sc.nextInt();
             }
         int cnt = findMax();
+        
         System.out.println(cnt);
         
         
