@@ -9,9 +9,9 @@ public class Main {
     public static int findMax(){
         int max = 0;
         for(int a=0; a<n; a++)
-            for(int b=0; b<n; b++)
+            for(int b=0; b<m; b++)
                 for(int c=0; c<n; c++)
-                    for(int d=0; d<n; d++){
+                    for(int d=0; d<m; d++){
                         int cnt = findMax(a,b,c,d);
                         max = Math.max(cnt, max);
                     }
@@ -19,6 +19,8 @@ public class Main {
     }
 
     public static int findMax(int a, int b, int c, int d){
+        if(a > c || b > d)
+            return -1;
         for(int i=a; i<=c; i++){
             for(int j=b; j<=d; j++){
                 if(arr[i][j] <=0)
