@@ -28,11 +28,26 @@ public class Main {
         a= sc.next().toCharArray();
         int len = a.length;
         int min = 10000;
-        for(int i=1; i<=len; i++){
+        boolean bool = true;
+        char abc = a[0];
+        for(int i=1; i<len; i++){
+            if(abc != a[i]){
+                bool = false;
+                break;
+            }
+        }
+        if(!bool){
+            for(int i=1; i<=len; i++){
             shift();
             int cnt = count();
             min = Math.min(cnt, min);
+            }
+            System.out.println(min);
         }
-        System.out.println(min);
+        else{
+            System.out.println("3");
+        }
+        
+        
     }
 }
