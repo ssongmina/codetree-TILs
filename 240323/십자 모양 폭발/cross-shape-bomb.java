@@ -23,15 +23,27 @@ public class Main {
         arr[r][c] = 0;
     }
 
+    public static void check(int a){
+        int[] brr = new int[n+1];
+        for(int i=1; i<=n; i++)
+            brr[i] = arr[i][a];
+        int cnt = n;
+        for(int i=n; i>=1; i--){
+            if(brr[i] == 0)
+                continue;
+            else{
+                arr[cnt][a] = brr[i];
+                cnt--;
+            }
+        }
+        for(int i=1; i<=cnt; i++)
+            arr[i][a] = 0;
+        
+    }
+
     public static void clean(){
         for(int i=1; i<=n; i++){ // 열에 대해서
-            for(int j=n; j>1; j--){
-                if(arr[j][i] == 0){
-                    int tmp = arr[j][i];
-                    arr[j][i] = arr[j-1][i];
-                    arr[j-1][i] = tmp;
-                }
-            }
+            check(i);
             
         }
     }
@@ -47,6 +59,11 @@ public class Main {
         int r = sc.nextInt();
         int c = sc.nextInt();
         bomb(r, c);
+        /*for(int i=1; i<=n; i++){
+            for(int j=1; j<=n; j++)
+                System.out.print(arr[i][j]+" ");
+            System.out.println();
+        }*/
         clean();
         for(int i=1; i<=n; i++){
             for(int j=1; j<=n; j++)
