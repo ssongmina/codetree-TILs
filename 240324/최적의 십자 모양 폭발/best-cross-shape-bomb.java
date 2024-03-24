@@ -11,8 +11,7 @@ public class Main {
             for(int j=1; j<=n; j++)
                 arr[i][j] = crr[i][j];
         // 폭탄 터트리기
-        if(row != -1){
-            int num = arr[row][col];
+        int num = arr[row][col];
             int[] dx = {-1, 0, 1, 0};
             int[] dy = {0, 1, 0, -1};
             for(int i=0; i<4; i++){
@@ -28,7 +27,14 @@ public class Main {
                 }
             }
             arr[row][col] = 0;
-        }
+            
+            /*if(row == 2 && col == 2){
+                for(int i=1; i<=n; i++){
+                    for(int j=1; j<=n; j++)
+                        System.out.print(arr[i][j]+" ");
+                    System.out.println();
+                }
+            }*/
         
 
         // 중력으로 인해 발생하는 결과 만들기
@@ -79,9 +85,10 @@ public class Main {
 
         // 모든 행과 열에 대해서 폭탄을 터트리고, 쌍의 수가 최대인 경우 찾기
         int max = 0;
-        for(int i=0; i<n; i++){
-            for(int j=0; j<n; j++){
+        for(int i=1; i<=n; i++){
+            for(int j=1; j<=n; j++){
                 bomb(i,j);
+               
                 int cnt = check();
                 max = Math.max(cnt, max);
             }
