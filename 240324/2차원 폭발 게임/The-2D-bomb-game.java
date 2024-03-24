@@ -25,6 +25,7 @@ public class Main {
         shift(); // 폭탄 터트린거 중력의 힘으로~
         rotate(); // 90도로 회전하기
         shift();
+        
     }
 
     // 폭탄 터트린거 중력의 힘으로~
@@ -52,7 +53,7 @@ public class Main {
 
         for(int i=0; i<n; i++){
             for(int j=0; j<n; j++)
-                arr[i][j] = crr[j][n-i-1];
+                arr[i][j] = crr[n-j-1][i];
         }
     }
 
