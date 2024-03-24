@@ -111,6 +111,21 @@ public class Main {
                 System.out.print(arr[i][j]+" ");
             System.out.println();
         }*/
+        for(int i=0; i<n; i++){ // 각 열에 대해서 계산.
+            for(int j=0; j<n; j++){
+                if(arr[j][i] == 0)
+                    continue;
+                else{
+                    int have = have(i, j); // m개의 연속된 폭탄이 있으면 폭탄의 갯수
+                    if(have == -1)
+                        continue;
+                    else{
+                        makeNull(i,j,have);
+                    }
+
+                }
+            }
+        }
        System.out.println(numOfBomb());
     }
 }
