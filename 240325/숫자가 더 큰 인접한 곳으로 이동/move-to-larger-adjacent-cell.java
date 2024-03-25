@@ -25,13 +25,16 @@ public class Main {
             for(int i=0; i<4; i++){
                 int x = r + dx[i];
                 int y = c + dy[i];
-                if(arr[r][c] < arr[x][y]){
+                if(x>=1 && x<=n && y>=1 && y<=n){
+                    if(arr[r][c] < arr[x][y]){
                     r = x;
                     c = y;
                     System.out.print(arr[r][c]+" ");
                     change = true;
                     break;
                 }
+                }
+                
             }
             if(change == false)
                 bool = false;
