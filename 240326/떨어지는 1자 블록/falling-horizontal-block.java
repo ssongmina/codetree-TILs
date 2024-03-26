@@ -6,6 +6,9 @@ public class Main {
     public static int[][] arr;
 
     public static boolean find(int row){
+        if(n == 1 && m == 1 && k == 1){
+            return true;
+        }
         int cnt = 0;
         int empty = 0;
         for(int i=k; i<=k+m-1; i++){
