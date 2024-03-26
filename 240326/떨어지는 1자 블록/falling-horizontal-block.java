@@ -1,57 +1,53 @@
-import java.util.*;
+import java.util.Scanner;
 
 public class Main {
-
-    public static int n,m,k;
-    public static int[][] arr;
-
-    public static boolean find(int row){
-        if(n == 1 && m == 1 && k == 1){
-            return true;
-        }
-        int cnt = 0;
-        int empty = 0;
-        for(int i=k; i<=k+m-1; i++){
-            if(arr[row][i] == 1) cnt++;
-            if(arr[row+1][i] == 1) empty++;
-        }
-        if(cnt == 0 && empty != 0)
-            return true;
-        else
-            return false;
+    public static final int MAX_N = 100;
+    
+    public static int n, m, k;
+    public static int[][] grid = new int[MAX_N][MAX_N];
+    
+    // 해당 row에 [colS, colE] 열에
+    // 전부 블럭이 없는지를 확인합니다.
+    public static boolean allBlank(int row, int colS, int colE) {
+        for(int col = colS; col <= colE ; col++)
+            if(grid[row][col] > 0)
+                return false;
+    
+        return true;
+    }
+    
+    // 최종적으로 도달하게 될 위치는
+    // 그 다음 위치에 최초로 블럭이 존재하는 순간임을 이용합니다.
+    public static int getTargetRow() {
+        for(int row = 0; row < n - 1; row++)
+            if(!allBlank(row + 1, k, k + m - 1))
+                return row;
+    
+        return n - 1;
     }
 
     public static void main(String[] args) {
-        // 여기에 코드를 작성해주세요.
-
-        // 입력
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
         m = sc.nextInt();
-        k = sc.nextInt(); // k번 ~ k+m-1번
-        arr = new int[n+1][n+1];
-        for(int i=1; i<=n; i++)
-            for(int j=1; j<=n; j++)
-                arr[i][j] = sc.nextInt();
-
-        // 넣을 수 있는 row 값 찾기
-        int row = -1;
-        for(int i=1; i<=n; i++){
-            boolean row1 = find(i);
-            if(row1){
-                row = i;
-                break;
-            }
-        }
-        // 그 row에 값을 1로 변경
-        for(int i=k; i<=k+m-1; i++)
-            arr[row][i] = 1;
-        // 출력
-        for(int i=1; i<=n; i++){
-            for(int j=1; j<=n; j++)
-                System.out.print(arr[i][j]+" ");
+        k = sc.nextInt();
+        k--;
+        
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++)
+                grid[i][j] = sc.nextInt();
+        
+        // 최종적으로 멈추게 될 위치를 구합니다.
+        int targetRow = getTargetRow();
+        
+        // 최종 위치에 전부 블럭을 표시합니다.
+        for(int col = k; col < k + m; col++)
+            grid[targetRow][col] = 1;
+        
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < n; j++)
+                System.out.print(grid[i][j] + " ");
             System.out.println();
         }
-        
     }
 }
