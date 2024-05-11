@@ -84,7 +84,7 @@ public class Main {
         }
         
         // 재귀 실행
-        for(int i=0; i<n; i++){
+        for(int i=0; i<linear.size(); i++){
             int cnt = 0;
             choose(i, cnt);
         }
