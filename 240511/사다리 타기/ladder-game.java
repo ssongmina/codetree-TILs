@@ -38,12 +38,6 @@ public class Main {
         arr[cnum+1] = tmp;
     }
 
-    public static void unchange(int cnum){
-        int tmp = arr[cnum];
-        arr[cnum] = arr[cnum+1];
-        arr[cnum+1] = tmp; 
-    }
-
     public static void choose(int num, int cnt){
         // 더 이상 진행 할 수 없기에 check() 후 종료.
         if(num == (int)linear.size()){
@@ -51,10 +45,11 @@ public class Main {
             return ;
         }
         int k = linear.get(num).b;
-        change(k);
+        change(k); // 바꿈
         check(cnt+1);
-        choose(num+1, cnt+1);
-        unchange(k);
+        for(int i=num+1; i<=linear.size(); i++)
+            choose(i, cnt+1);
+        change(k); // 복원
     }
     
     public static void main(String[] args) {
@@ -89,10 +84,10 @@ public class Main {
         }
         
         // 재귀 실행
-        int cnt = 0;
-        for(int i=0; i<n; i++)
+        for(int i=0; i<n; i++){
+            int cnt = 0;
             choose(i, cnt);
-
+        }
         // 최소 선분 수 출력
         if(count == n)
             System.out.println("0");
