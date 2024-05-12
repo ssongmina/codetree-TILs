@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Main {
 
-    public static int n,max;
+    public static int n,max = -1000000000;
     public static String str;
     public static char c = 'a';
     public static int[] alphabet = new int[6];
