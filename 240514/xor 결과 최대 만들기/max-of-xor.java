@@ -29,6 +29,9 @@ public class Main {
         m = sc.nextInt();
         
         choose(1, 0);
-        System.out.println(max);
+        if(n==m && m==1)
+            System.out.println("0");
+        else
+            System.out.println(max);
     }   
 }
