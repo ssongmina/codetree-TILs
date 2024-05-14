@@ -33,9 +33,7 @@ public class Main {
             input.add(a);
         }
         choose(1, 0);
-        if(n==m && m==1)
-            System.out.println("0");
-        else
-            System.out.println(max);
+       
+        System.out.println(max);
     }   
 }
