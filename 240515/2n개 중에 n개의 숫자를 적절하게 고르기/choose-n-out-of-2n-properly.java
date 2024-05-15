@@ -2,45 +2,43 @@ import java.util.*;
 
 public class Main {
 
-    public static int n, sum1, sum2, min = 1000000000;
+    public static int n, min = 100000;
     public static ArrayList<Integer> arr = new ArrayList<>();
+    public static ArrayList<Integer> sum1 = new ArrayList<>();
+    public static ArrayList<Integer> sum2 = new ArrayList<>();
 
-    public static void choose(int num, int cnt1, int cnt2){
-        if(cnt1 == n/2){
-            for(int i=num; i<arr.size(); i++)
-                sum2 += arr.get(i);
-            min = Math.min(min, Math.abs(sum1-sum2));
+    public static void choose(int num){
+        if(num == 2*n){
+            if(sum1.size() != sum2.size()){
+                return;
+            }
+            int s1=0, s2=0;
+            for(int i=0; i<n; i++){
+                s1 += sum1.get(i);
+                s2 += sum2.get(i);
+            }
+            min = Math.min(min, Math.abs(s1-s2));
             return;
         }
-        else if(cnt2 == n/2){
-            for(int i=num; i<arr.size(); i++)
-                sum1 += arr.get(i);
-            min = Math.min(min, Math.abs(sum1-sum2));
-            return;
-        }
-        if(num == n){
-            min = Math.min(min, Math.abs(sum1-sum2));
-            return;
-        }
-        // num번째 수를 내가 선택하는 경우
-        sum1 += arr.get(num);
-        choose(num+1,cnt1+1, cnt2);
-        sum1 -= arr.get(num);
+        int a = arr.get(num);
 
-        // num번째 수를 내가 선택 안하는 경우
-        sum2 += arr.get(num);
-        choose(num+1, cnt1, cnt2+1);
-        sum2 -= arr.get(num);
+        sum1.add(a);
+        choose(num+1);
+        sum1.remove(sum1.size()-1);
+
+        sum2.add(a);
+        choose(num+1);
+        sum2.remove(sum2.size()-1);
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
-        for(int i=0; i<n; i++){
+        for(int i=0; i<2*n; i++){
             int a = sc.nextInt();
             arr.add(a);
         }
-        choose(0,0,0);
+        choose(0);
         System.out.println(min);
     }
 }
