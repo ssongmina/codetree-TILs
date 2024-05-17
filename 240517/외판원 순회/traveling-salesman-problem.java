@@ -13,8 +13,12 @@ public class Main {
             int add = 0;
             for(int i=0; i<sum.size(); i++)
                 add += sum.get(i);
-            add += arr[row][1];
-            min = Math.min(min, add);
+            if(arr[row][1] != 0){
+                add += arr[row][1];
+                min = Math.min(min, add);
+            }
+            else
+                return;
         }
         
         for(int i=1; i<=n; i++){
