@@ -18,7 +18,7 @@ public class Main {
         }
         
         for(int i=1; i<=n; i++){
-            if(visit[i] == false){
+            if(visit[i] == false && arr[row][i] != 0){
                 visit[i] = true;
                 sum.add(arr[row][i]);
                 choose(i, cnt+1);
