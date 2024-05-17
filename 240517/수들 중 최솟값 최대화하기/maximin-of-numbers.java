@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Main {
 
-    public static int n, result;
+    public static int n, result = 0;
     public static int[][] cost = new int[11][11];
     public static ArrayList<Integer> sum = new ArrayList<>();
     public static boolean[] row = new boolean[11];
@@ -14,7 +14,7 @@ public class Main {
             int small = sum.get(0);
             for(int i=1; i<sum.size(); i++)
                 small = Math.min(small, sum.get(i));
-            result = small;
+            result = Math.max(small, result);
             return;
         }
         
