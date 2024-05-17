@@ -42,6 +42,8 @@ public class Main {
         
         visit[1] = true;
         for(int i=2; i<=n; i++){
+            if(arr[1][i] == 0)
+                continue;
             visit[i] = true;
             sum.add(arr[1][i]);
             choose(i, 1);
