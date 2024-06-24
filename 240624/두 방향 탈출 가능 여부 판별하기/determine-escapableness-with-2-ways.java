@@ -20,12 +20,10 @@ public class Main {
     }
 
     public static void dfs(int x, int y){
-        if(x == n-1 && y == m-1){
+        if((x == n-1 && y == m-1) || possible == 1){
             possible = 1;
             return;
         }
-        if(possible == 1)
-            return;
             
         for(int i=0; i<2; i++){
             int a = x + dx[i];
@@ -33,7 +31,7 @@ public class Main {
             if(canGo(a,b)){
                 visited[a][b] = 1;
                 dfs(a,b);
-                visited[a][b] = 0;
+                //visited[a][b] = 0;
             }
         }
     }
